@@ -16,6 +16,8 @@ public static class DependencyInjection
     {
         // Add application services here
         services.AddScoped<IAppointmentService, AppointmentService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<ITokenService, TokenService>();
         services.AddAutoMapper(typeof(AppointmentProfile).Assembly);
         return services;
     }

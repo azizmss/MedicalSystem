@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Infrastructure.Repository;
-internal class RoleRepository
+public class RoleRepository
 {
 }

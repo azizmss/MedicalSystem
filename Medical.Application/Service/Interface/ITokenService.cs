@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Application.Service.Interface;
-public interface IAuthService
+public interface ITokenService
 {
-    Task<UserResponse> RegisterAsync(UserRegisterRequest request);
-    Task<UserResponse> LoginAsync(UserLoginRequest request);
+    Task<string> GenerateToken(UserResponse user);
+    string CreateRefreshToken();
 }

@@ -1,11 +1,15 @@
-﻿using Medical.Domain.Interface;
+﻿using Medical.Application.DTO.Auth;
+using Medical.Application.Repository.Interfaces;
+using Medical.Domain.Interface;
+using Medical.Infrastructure.AutoMapper;
+using Medical.Infrastructure.Presistance.Data;
 using Medical.Infrastructure.Presistance.Data;
 using Medical.Infrastructure.Presistance.Models;
 using Medical.Infrastructure.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Medical.Infrastructure.Presistance.Data;
+using System.Security;
 
 namespace Medical.Infrastructure.Configuration;
 public static class DependencyInjection
@@ -26,7 +30,9 @@ public static class DependencyInjection
         .AddDefaultTokenProviders();
 
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-
+        services.AddScoped<IAuthRepository, AuthRepository>();
+        services.AddScoped<IPermissionRepository, PermissionRepository>();
+        services.AddAutoMapper(typeof(RegisterProfile));
         return services;
     }
     public static WebApplication AddInfrastructureWeb(this WebApplication app) // Fix type name to WebApplication
