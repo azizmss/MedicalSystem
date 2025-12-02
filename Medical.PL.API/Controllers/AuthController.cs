@@ -28,4 +28,25 @@ public class AuthController : ControllerBase
         var user = await _authService.LoginAsync(userDto);
         return Ok(user);
     }
+    [HttpPost("refresh/token")]
+    public async Task<IActionResult> refreshToken([FromBody] string token)
+    {
+        return Ok(await _authService.RefreshTokenAsync(token));
+
+    }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> logout([FromBody] string token)
+    {
+
+        var isLogout = await _authService.Logout(token);
+        if (isLogout)
+        {
+            return Ok("You logout successfuly");
+        }
+        else
+        {
+            return BadRequest("error in logout");
+        }
+    }
 }

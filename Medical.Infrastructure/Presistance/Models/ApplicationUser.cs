@@ -22,5 +22,6 @@ public class ApplicationUser : IdentityUser
     public DateTime? CreateAt { get; set; }
     public DateTime? UpdateeAt { get; set; }
 
+    public DateTime RevokeOn { get; set; }
 
 }

@@ -3,6 +3,7 @@ using Medical.Application.DTO.Auth;
 using Medical.Application.Repository.Interfaces;
 using Medical.Infrastructure.Presistance.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,5 +47,42 @@ public class AuthRepository : IAuthRepository
 
         return response;
 
+    }
+    public async Task<UserResponse> checkToken(string token)
+    {
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.AccessToken == token);
+        if (user == null) {
+            throw new Exception();
+        }
+        
+
+        var response = _mapper.Map<UserResponse>(user);
+        return response;
+    }
+
+    public async Task<bool> updateUserRefreshToken(UserResponse user)
+    {
+        var Newuser = await _userManager.FindByEmailAsync(user.Email);
+        //Newuser.RefreshToken = user.RefreshToken;
+        //Newuser.RefreshTokenExpiryTime = user.RefreshTokenExpiryTime;
+        var map = _mapper.Map(user, Newuser);
+        var result = await _userManager.UpdateAsync(map);
+
+        if (result.Succeeded)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public async Task<bool> updateUserToken(UserAccessToken dto)
+    {
+
+        var user = await _userManager.FindByEmailAsync(dto.Email);
+        user.AccessToken = dto.AccessToken;
+        var result = await _userManager.UpdateAsync(user);
+        return result.Succeeded;
     }
 }
