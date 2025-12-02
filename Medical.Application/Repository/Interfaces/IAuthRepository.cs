@@ -11,6 +11,7 @@ public interface IAuthRepository
     Task<UserResponse> RegisterAsync(UserRegisterRequest requestDto);
     Task<UserResponse> LoginAsync(UserLoginRequest requestDto);
     Task<bool> updateUserRefreshToken(UserResponse user);
+    Task<bool> updateUserToken(UserAccessToken dto);
     Task<UserResponse> checkToken(string token);
     
 }

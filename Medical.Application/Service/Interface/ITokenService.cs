@@ -9,5 +9,6 @@ namespace Medical.Application.Service.Interface;
 public interface ITokenService
 {
     Task<string> GenerateToken(UserResponse user);
+    string GenerateRefreshToken();
     string CreateRefreshToken();
 }

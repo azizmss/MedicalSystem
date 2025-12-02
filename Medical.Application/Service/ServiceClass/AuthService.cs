@@ -64,6 +64,7 @@ public class AuthService : IAuthService
         var newRefreshToken = _tokenService.GenerateRefreshToken();
         user.RefreshToken = newRefreshToken;
         user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(10);
+        
         await _authRepository.updateUserRefreshToken(user);
 
 
