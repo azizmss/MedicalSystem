@@ -13,8 +13,7 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
     public void Configure(EntityTypeBuilder<Appointment> builder)
     {
         builder.Property(z=>z.Status).HasDefaultValue(0);
-        builder.Property(z=>z.DateAt).HasDefaultValue(DateTime.UtcNow);
-
+        builder.Property(z=>z.CreatedAt).HasDefaultValue(DateTime.UtcNow);
     }
 }
 

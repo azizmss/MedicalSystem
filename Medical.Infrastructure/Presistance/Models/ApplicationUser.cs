@@ -16,12 +16,12 @@ public class ApplicationUser : IdentityUser
     public string? Address { get; set; }
     public int UserType { get; set; } = 0;
     public int IsActive { get; set; } = 1;
-    public string AccessToken { get; set; } 
+    public string? AccessToken { get; set; } 
     public string? RefreshToken { get; set; } 
     public DateTime? RefreshTokenExpiryTime { get; set; }
     public DateTime? CreateAt { get; set; }
     public DateTime? UpdateeAt { get; set; }
 
-    public DateTime RevokeOn { get; set; }
+    public DateTime? RevokeOn { get; set; }
 
 }

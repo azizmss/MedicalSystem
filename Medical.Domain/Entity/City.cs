@@ -6,13 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Domain.Entity;
-public class Appointment
+public class City:EntityBase
 {
     [Key]
     public int Id { get; set; }
-    public int PatientId { get; set; }
-    public int TimeSlotId { get; set; }
-    public int LocationId { get; set; }
-    public DateTime CreatedAt { get; set; }   
-    public int Status { get; set; }
+    public string Name { get; set; }
+    public int CountryId { get; set; }
 }

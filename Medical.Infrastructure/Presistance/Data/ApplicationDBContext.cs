@@ -17,4 +17,12 @@ public class ApplicationDBContext: IdentityDbContext<ApplicationUser, Applicatio
     }
 
     public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<City> Cities { get; set; }
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<Location> Locations { get; set; }
+    public DbSet<Patient> Patients { get; set; }
+    public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<Specialty> Specialties { get; set; }
+    public DbSet<TimeSlot> TimeSlots { get; set; }
 }

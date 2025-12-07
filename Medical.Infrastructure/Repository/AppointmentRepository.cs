@@ -8,16 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Infrastructure.Repository;
-public class AppointmentRepository : IAppointmentRepository
+public class AppointmentRepository : Repository<Appointment>, IAppointmentRepository
 {
     private ApplicationDBContext _context;
-    public AppointmentRepository(ApplicationDBContext context)
+    public AppointmentRepository(ApplicationDBContext context) : base(context) { }
+
+    public Task CustomFuncton()
     {
-        _context = context;
-    }
-    public async Task Create(Appointment entity)
-    {
-         await _context.Appointments.AddAsync(entity);
-         await _context.SaveChangesAsync();
+        throw new NotImplementedException();
     }
 }

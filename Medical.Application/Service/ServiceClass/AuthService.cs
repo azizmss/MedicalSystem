@@ -40,7 +40,6 @@ public class AuthService : IAuthService
         }
 
     }
-
     public async Task<UserResponse> RegisterAsync(UserRegisterRequest request)
     {
         var user = await _authRepository.RegisterAsync(request);
@@ -89,11 +88,11 @@ public class AuthService : IAuthService
             if (user == null)
                 return false;
 
-            user.AccessToken = null;
+            user.AccessToken = string.Empty;// null;
             user.ExpireToken = DateTime.Now;
 
-            user.RefreshToken = null;
-            user.RefreshTokenExpiryTime = null;
+            user.RefreshToken = string.Empty;//null;
+            user.RefreshTokenExpiryTime = DateTime.Now; ;// null;
 
             user.RevokeOn = DateTime.Now;  // logout
 

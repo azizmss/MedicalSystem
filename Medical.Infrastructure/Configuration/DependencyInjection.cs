@@ -3,7 +3,6 @@ using Medical.Application.Repository.Interfaces;
 using Medical.Domain.Interface;
 using Medical.Infrastructure.AutoMapper;
 using Medical.Infrastructure.Presistance.Data;
-using Medical.Infrastructure.Presistance.Data;
 using Medical.Infrastructure.Presistance.Models;
 using Medical.Infrastructure.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +27,10 @@ public static class DependencyInjection
         })
         .AddEntityFrameworkStores<ApplicationDBContext>()
         .AddDefaultTokenProviders();
-
+        
+        services.AddScoped(typeof( IRepository<>), typeof(Repository<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IDoctorRepository, DoctorRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<IPermissionRepository, PermissionRepository>();

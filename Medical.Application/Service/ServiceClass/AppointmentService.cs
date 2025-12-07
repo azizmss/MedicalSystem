@@ -12,15 +12,31 @@ using System.Threading.Tasks;
 namespace Medical.Application.Service.ServiceClass;
 public class AppointmentService : IAppointmentService
 {
-    private IMapper _mapper;
-    private IAppointmentRepository _AppointmentRepo;
-    public AppointmentService(IMapper mapper,IAppointmentRepository appointmentRepository)
+    public IMapper _mapper;
+    public IAppointmentRepository _appoinmnetRepo;
+    public IRepository<Appointment> _appointmentRepo;
+    public IUnitOfWork _unitofwork;
+    public AppointmentService(
+        IMapper mapper,
+        IAppointmentRepository appoinmnetRepo,
+        IRepository<Appointment> appointmentRepo,
+        IUnitOfWork unitofwork)
     {
-        _AppointmentRepo = appointmentRepository;
+        _mapper = mapper;
+        _appoinmnetRepo = appoinmnetRepo;
+        _appointmentRepo = appointmentRepo;
+        _unitofwork = unitofwork;
     }
-    public async Task CreateAppointment(AppointmentDTO dto)
-    {
+    public async Task createAppointment(AppointmentDTO dto)
+    {       
         var mapAppointment = _mapper.Map<Appointment>(dto);
-        await _AppointmentRepo.Create(mapAppointment);
+
+        await _unitofwork.Repository<Appointment>().AddAsync(mapAppointment);
+
+        await _unitofwork._appointmentRepository.CustomFuncton();
+
+        //await _appointmentRepo.AddAsync(mapAppointment);
+        //await _appoinmnetRepo.create(mapAppointment);
     }
 }
+

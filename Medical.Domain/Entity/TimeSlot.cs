@@ -6,13 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Domain.Entity;
-public class Appointment
+public class TimeSlot: EntityBase
 {
     [Key]
     public int Id { get; set; }
-    public int PatientId { get; set; }
-    public int TimeSlotId { get; set; }
-    public int LocationId { get; set; }
-    public DateTime CreatedAt { get; set; }   
-    public int Status { get; set; }
+    public int SchduleId { get; set; }
+    public string Day { get; set; }
+    public DateTime Time { get; set; }
+    public string Duration  { get; set; }
 }

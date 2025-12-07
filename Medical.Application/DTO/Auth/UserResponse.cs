@@ -26,5 +26,7 @@ public class UserResponse
     public DateTime RevokeOn { get; set; }
     public DateTime CreateAt { get; set; }
     public DateTime UpdateAt { get; set; }
-   
+
+    public string Role { get; set; }
+
 }

@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 namespace Medical.Application.Service.Interface;
 public interface IAppointmentService
 {
-    Task CreateAppointment(AppointmentDTO dto);
+    Task  createAppointment(AppointmentDTO dto);
 }

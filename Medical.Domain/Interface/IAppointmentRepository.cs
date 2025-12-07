@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Medical.Domain.Interface;
-public interface IAppointmentRepository
+public interface IAppointmentRepository:IRepository<Appointment>
 {
-    Task Create(Appointment entity);
+    //Task Create(Appointment entity);
 
+    Task CustomFuncton();
 }
+

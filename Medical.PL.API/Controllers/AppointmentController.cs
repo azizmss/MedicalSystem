@@ -17,7 +17,7 @@ public class AppointmentController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAppointment([FromBody] AppointmentDTO dto)
     {
-        await _service.CreateAppointment(dto);
+        await _service.createAppointment(dto);
         return Ok("Appointment created Successfully");
     }
 }
